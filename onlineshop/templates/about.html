@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <title>{{title}}</title>
+</head>
+<body>
+{% block content %}
+<div class="container" id="about">
+<h1>Olex</h1><br><h2>- торговая площадка, которая гарантирует честность сделок между продавцом и покупцом.
+    Компания была создана в 2014 году и предоставляет свои услуги в 3х странах мира!</h2></div>
+<table>
+    <tr><img src="{% static 'images/1.jpg' %}" width="33%" height="300px"></tr>
+    <tr><img src="{% static 'images/2.jpg' %}" width="33%" height="300px"></tr>
+    <tr><img src="{% static 'images/fotostok.jpg' %}" width="33%" height="300px"></tr>
+
+</table>
+{% endblock %}
+</body>
+</html>
