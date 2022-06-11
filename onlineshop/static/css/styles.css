@@ -1,9 +1,10 @@
+.form-error{
+    background-color: red;
+    border-radius: 20px;}
 #shoplist{
     text-align: center;}
 form{
     text-align: center;
-    margin-bottom: 100px;
-    margin-top: 65px;
     }
 .greeting{
     text-align: center;
@@ -155,7 +156,13 @@ transition: all 250ms ease-in-out 0s;
 }
 /* Form register*/
 .form-login{
-    margin-left:35%;
-    margin-right:35%;
-    background-color:  #659DBD;
+    background-image: url('images/back.jpg');
+    margin-left:25%;
+    margin-right:25%;
     }
+.mb-3{
+    margin-left:30%;
+    margin-right:30%;
+    }
+#passwordHelpBlock{
+    color: rgba(0,0,0,0.5);}

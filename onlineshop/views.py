@@ -71,13 +71,16 @@ class LoginUser(LoginView):
     def get_success_url(self):
         return reverse_lazy('home')
 
+    def get_context_data(self, **kwargs):
+        return {'title': 'Авторизация', 'form': self.form_class}
+
 
 def logout_user(request):
     logout(request)
     return redirect('login')
 
 
-class ContactFormView(FormView):
+class ContactFormView(LoginRequiredMixin, FormView):
     form_class = ContactForm
     template_name = 'contact.html'
     success_url = reverse_lazy('home')
@@ -85,6 +88,9 @@ class ContactFormView(FormView):
     def form_valid(self, form):
         print(form.cleaned_data)
         return redirect('home')
+
+    def get_context_data(self, **kwargs):
+        return {'title': 'Личный кабинет', 'form': self.form_class}
 
 
 class ShopCategory(ListView):
@@ -99,6 +105,5 @@ class ShopCategory(ListView):
 
     def get_context_data(self, *, object_list=None, **kwargs):
         posts = ShopList.objects.filter(cat__slug=self.kwargs['cat_slug'], is_published=True).select_related('cat')
-        return {'title': 'Категория - ', 'posts': posts, 'cats': cats}
-
+        return {'title': 'Категория - ' + str(posts[0].cat), 'posts': posts, 'cats': cats}
 

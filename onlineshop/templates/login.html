@@ -1,18 +1,26 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block content %}
-<h1>{{title}}</h1>
 
-<form method="post" class="form-login">
-    {% csrf_token %}
 
+<form class="form-login" method="post">
+  {% csrf_token %}
 <div class="form-error">{{ form.non_field_errors }}</div>
-{% for f in form %}
-    <p><label class="form-label" for="{{f.id_for_label}}">{{f.label}}: </label><br>{{ f }}</p>
-<div class="form-error">{{f.errors}}</div>
-{% endfor %}
+  <div class="mb-3">
 
-    <button type='submit'>Войти</button>
+    {% for f in form %}
+      <div class="form-error">{{f.errors}}</div>
+    <h3><label class="form-label" for="{{f.id_for_label}}">{{f.label}}:</label></h3>{{ f }}
+{% endfor %}
+<div id="passwordHelpBlock" class="form-text">
+  Ваш пароль должен состоять из 8-20 символов, содержать буквы и цифры и не должен содержать пробелов, специальных символов или эмодзи.
+</div>
+  </div>
+  <div class="mb-3 form-check">
+    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+    <label class="form-check-label" for="exampleCheck1">Запомнить меня</label>
+  </div>
+  <button type="submit" class="btn btn-primary">Отправить</button>
 </form>
 
 {% endblock %}

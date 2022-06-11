@@ -10,9 +10,9 @@
 			</div>
 
 {% if p.photo %}
-	<p><img class="img-article-left thumb" src="{{p.photo.url}}"></p>
+	<p><img class="img-article-left thumb" src="{{ p.photo.url }}" width="300" height="300"></p>
 {% endif %}
-			<h2>{{p.title}}</h2>
+		<h2>{{p.title}}</h2><i>{{p.price}} грн</i>
 	{% autoescape on %}
 	{{p.content|linebreaks|truncatewords:20}}
 	{% endautoescape %}
