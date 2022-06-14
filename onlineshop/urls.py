@@ -12,5 +12,4 @@ urlpatterns = [
     path('user_room/', ContactFormView.as_view(), name='contact_us'),
     path('shop/<slug:cat_slug>/', ShopCategory.as_view(), name='category'),
     path('category/<slug:post_slug>/', ShowPost.as_view(), name='post'),
-
 ]

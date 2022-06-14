@@ -1,15 +1,14 @@
 {% extends 'base.html' %}
 {% block content %}
-<h1>{{title}}</h1>
 
 <form method="post" class="form-register">
     {% csrf_token %}
 
 {% for f in form %}
-    <p><label class="form-label" for="{{f.id_for_label}}">{{f.label}}: </label><br>{{ f }}</p>
+    <p><h3><label class="form-label" for="{{f.id_for_label}}">{{f.label}}: </label></h3>{{ f }}</p>
     <div class="form-error">{{f.errors}}</div>
 {% endfor %}
-    <button type='submit' class="reg">Регистрация</button>
+    <button type="submit" class="btn btn-primary">Регистрация</button>
 </form>
 
 {% endblock %}

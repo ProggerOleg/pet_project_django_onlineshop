@@ -58,6 +58,9 @@ class RegisterUser(CreateView):
     template_name = 'register.html'
     success_url = reverse_lazy('login')
 
+    def get_context_data(self, **kwargs):
+        return {'cats': cats, 'title': 'Регистрация', 'form': self.form_class}
+
     def form_valid(self, form):
         user = form.save()
         login(self.request, user)
@@ -72,7 +75,7 @@ class LoginUser(LoginView):
         return reverse_lazy('home')
 
     def get_context_data(self, **kwargs):
-        return {'title': 'Авторизация', 'form': self.form_class}
+        return {'title': 'Авторизация', 'form': self.form_class, 'cats': cats}
 
 
 def logout_user(request):
@@ -106,4 +109,3 @@ class ShopCategory(ListView):
     def get_context_data(self, *, object_list=None, **kwargs):
         posts = ShopList.objects.filter(cat__slug=self.kwargs['cat_slug'], is_published=True).select_related('cat')
         return {'title': 'Категория - ' + str(posts[0].cat), 'posts': posts, 'cats': cats}
-

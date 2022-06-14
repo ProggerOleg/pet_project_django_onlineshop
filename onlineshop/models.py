@@ -7,7 +7,7 @@ from django.urls import reverse
 class ShopList(models.Model):
     title = models.CharField(max_length=255, verbose_name='Заголовок')
     slug = models.SlugField(max_length=255, unique=True, db_index=True)
-    price = models.IntegerField(verbose_name='Цена')
+    price = models.DecimalField(max_digits=10, decimal_places=2, verbose_name='Цена')
     content = models.TextField(blank=True, verbose_name='Текст статьи')
     photo = models.ImageField(upload_to="photos/%Y/%m/%d/", verbose_name='Фото')
     time_create = models.DateTimeField(auto_now_add=True, verbose_name='Дата публикации')
@@ -29,7 +29,7 @@ class ShopList(models.Model):
 
 class Category(models.Model):
     name = models.CharField(max_length=100, db_index=True, verbose_name='Категория')
-    slug = models.SlugField(max_length=255, unique=True, db_index=True, verbose_name="URL")
+    slug = models.SlugField(max_length=200, unique=True, db_index=True, verbose_name="URL")
 
     def __str__(self):
         return self.name
@@ -39,6 +39,5 @@ class Category(models.Model):
 
     class Meta:
         verbose_name = 'Категория'
-        verbose_name_plural = 'Категория'
+        verbose_name_plural = 'Категории'
         ordering = ['id']
-

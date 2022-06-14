@@ -1,10 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-Добавить страницу
-</body>
-</html>
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>{{title}}</h1>
+<form action="{% url 'addpage' %}" method='post' enctype="multipart/form-data">
+    {% csrf_token %}
+
+    <div class="form-error">{{form.non_field_errors}}</div>
+
+{% for f in form %}
+    <p><h3><label class="form-label" for="{{ f.id_for_label }}">{{f.label}}: </label></h3>{{f}}
+    <div class="form-error">{{f.errors}}</div>
+{% endfor %}
+<br>
+    <button type="submit" class="btn btn-primary">Добавить</button>
+</form>
+{% endblock %}

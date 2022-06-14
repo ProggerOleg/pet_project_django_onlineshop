@@ -1,23 +1,20 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block content %}
 
-<ul class="list-articles">
-	{% for p in posts %}
-	<div class="container-fluid" id="shoplist">
-			<div class="article-panel">
-	<p class="first">Категория: {{p.cat}}</p>
-	<p class="last">Дата обьявления: {{p.time_update|date:"d-m-Y H:i:s"}}</p>
-			</div>
+   <div id="main" class="product-list">
+        <h1>{% if cat %}{{ cat.name }}{% else %}Products{% endif %}</h1>
+        {% for product in posts %}
 
-{% if p.photo %}
-	<p><img class="img-article-left thumb" src="{{ p.photo.url }}" width="300" height="300"></p>
-{% endif %}
-		<h2>{{p.title}}</h2><i>{{p.price}} грн</i>
-	{% autoescape on %}
-	{{p.content|linebreaks|truncatewords:20}}
-	{% endautoescape %}
-			<div class="clear"></div>
-	</div>
-	{% endfor %}
-</ul>
+            <div class="item">
+                <a href="{{ product.get_absolute_url }}">
+                    <img src="{% if product.photo %}{{ product.photo.url }}{% else %}{% static 'img/no_image.png' %}{% endif %}" width="300">
+                </a>
+                <a href="{{ product.get_absolute_url }}">{{ product.name }}</a><br>
+                {% autoescape on %} {{product.content|linebreaks|truncatewords:50}} {% endautoescape %}
+                ${{ product.price }}
+
+            </div>
+        {% endfor %}
+    </div>
 {% endblock %}
