@@ -35,9 +35,13 @@ class ShopHome(ListView):
 
 class ShowPost(DetailView):
     model = ShopList
-    template_name = 'post.html'
+    template_name = 'show_post.html'
     slug_url_kwarg = 'post_slug'
-    context_object_name = 'post'
+    context_object_name = 'product'
+
+    def get_context_data(self, **kwargs):
+        return {'cats': cats, 'title': 'Обьявление', 'product': self.get_object()}
+
 
 
 def pageNotFound(request, exception):
@@ -48,9 +52,12 @@ class AddProduct(LoginRequiredMixin, CreateView):
     model = ShopList
     template_name = 'addpage.html'
     form_class = AddPostForm
-    template_name = 'addpage.html'
     success_url = reverse_lazy('home')
     login_url = '/admin/'
+
+    def get_context_data(self, **kwargs):
+        return {'cats': cats, 'title': 'Добавить новый товар', 'form': self.form_class}
+
 
 
 class RegisterUser(CreateView):
@@ -93,7 +100,7 @@ class ContactFormView(LoginRequiredMixin, FormView):
         return redirect('home')
 
     def get_context_data(self, **kwargs):
-        return {'title': 'Личный кабинет', 'form': self.form_class}
+        return {'title': 'Личный кабинет', 'form': self.form_class, 'cats': cats}
 
 
 class ShopCategory(ListView):
@@ -108,4 +115,4 @@ class ShopCategory(ListView):
 
     def get_context_data(self, *, object_list=None, **kwargs):
         posts = ShopList.objects.filter(cat__slug=self.kwargs['cat_slug'], is_published=True).select_related('cat')
-        return {'title': 'Категория - ' + str(posts[0].cat), 'posts': posts, 'cats': cats}
+        return {'title': 'Категория - ' + str(posts[0].cat), 'posts': posts, 'cats': cats, 'cat': posts[0].cat}

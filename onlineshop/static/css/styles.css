@@ -2,16 +2,37 @@
     background-color: red;
     border-radius: 20px;
     }
+.container.ending{
+    width: 100vw;
+    text-align: center;
+}
+#img-prod{
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    }
+#main-text{
+    text-align: center;}
 .item{
     width:25%;
+    float:left;
+    outline-style: solid;
+    outline-width: 2px;
+    height:510px;
+    margin-bottom: 10px;
+    text-align: center;
+    link: black;
     }
 div.article-panel {
     background: #eee;
     padding: 5px 10px 5px 10px;
-    box-sizing: border-box;
+
     overflow: hidden;
     color: #555;
 }
+#post_img{
+    float:left;
+    margin: 7px 7px 7px 0;}
 form{
     text-align: center;
     }

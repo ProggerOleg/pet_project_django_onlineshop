@@ -12,7 +12,7 @@ class AddPostForm(forms.ModelForm):
 
     class Meta:
         model = ShopList
-        fields = ['title', 'slug', 'content', 'photo', 'is_published', 'cat']
+        fields = ['title', 'slug', 'price', 'content', 'photo', 'is_published', 'cat']
         widgets = {
             'title': forms.Textarea(attrs={'class': 'form-input', 'rows': 1}),
             'content': forms.Textarea(attrs={'cols': 60, 'rows': 10}),
