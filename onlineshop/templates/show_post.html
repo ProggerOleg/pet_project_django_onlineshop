@@ -7,9 +7,16 @@
     <div class="product-detail">
         <img src="{% if product.photo %}{{ product.photo.url }}{% else %}{% static 'images/no_image.png' %}{% endif %}" width="400" id="post_img">
         <h1>{{ product.title }}</h1>
-        <h2><a href="{{ product.cat.get_absolute_url }}" style="color:black;">{{ product.cat }}</a></h2>
-        <p class="price" style="color:red;">₴{{ product.price }}</p>
+        <h3><a href="{{ product.cat.get_absolute_url }}" style="color:black;">{{ product.cat }}</a></h3>
+        <h3><p class="price" style="color:red;">₴{{ product.price }}</p></h3>
         {{ product.content|linebreaks }}
     </div>
+
+<form action="{% url 'cart:cart_add' product.id %}" method="post">
+    {{ cart_product_form }}
+    {% csrf_token %}
+    <input type="submit" value="Add to cart">
+</form>
+
 <img src="{% static 'images/dno_magaz.png' %}" width="100%" height="100px">
 {% endblock %}

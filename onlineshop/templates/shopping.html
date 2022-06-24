@@ -10,12 +10,12 @@
 	                <p class="first">Категория: {{product.cat}}<br> Дата: {{product.time_update|date:"d-m-Y H:i:s"}}</p>
 
 			</div>
-                <a href="{{ product.get_absolute_url }}">
-                    <img src="{% if product.photo %}{{ product.photo.url }}{% else %}{% static 'images/no_image.png' %}{% endif %}" width="260" height="300" id="img-prod">
+                <a href="{{ product.get_absolute_url }}" style="color:black;">
+                    <img src="{% if product.photo %}{{ product.photo.url }}{% else %}{% static 'images/no_image.png' %}{% endif %}" width="240" height="300" id="img-prod">
 
                     <h6>{{ product.title }}</h6>
-                {% autoescape on %} {{product.content|linebreaks|truncatewords:5}} {% endautoescape %}
-                <p class="price" style="color:red;">₴{{ product.price }}</p>
+                    {% autoescape on %} {{product.content|linebreaks|truncatewords:5}} {% endautoescape %}
+                    <h5><p class="price" style="color:red;">₴{{ product.price }}</p></h5>
                 </a>
             </div>
         {% endfor %}
