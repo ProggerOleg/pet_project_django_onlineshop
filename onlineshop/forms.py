@@ -30,10 +30,8 @@ class AddPostForm(forms.ModelForm):
 
 class RegisterUserForm(UserCreationForm):
     username = forms.CharField(label='Логин', widget=forms.TextInput(attrs={'class': 'form-input', 'rows': 3,
-                                                                            'cols': 20,
-                                                                            'placeholder': 'Логин'}))
-    email = forms.EmailField(label='Почта', widget=forms.EmailInput(attrs={'class': 'form-input',
-                                                                           'placeholder': 'Почта'}))
+                                                                            'cols': 20, 'placeholder': 'Логин'}))
+    email = forms.EmailField(label='Почта', widget=forms.EmailInput(attrs={'class': 'form-input', 'placeholder': 'myemail@gmail.com'}))
     password1 = forms.CharField(label='Пароль', widget=forms.PasswordInput(attrs={'class': 'form-input',
                                                                                   'placeholder': 'Пароль'}))
     password2 = forms.CharField(label='Повтор пароля', widget=forms.PasswordInput(attrs={'class': 'form-input',

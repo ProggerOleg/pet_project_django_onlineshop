@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'onlineshop',
     'cart',
+    'orders',
 ]
 
 MIDDLEWARE = [
@@ -134,3 +135,6 @@ INTERNAL_IPS = [
     "127.0.0.1",
 ]
 CART_SESSION_ID = 'cart'
+
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY ='875651599798-46rq8obkpn8rbq5q8r1bbd3hm06hfrn3.apps.googleusercontent.com'
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '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'

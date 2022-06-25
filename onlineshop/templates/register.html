@@ -1,14 +1,41 @@
+<!DOCTYPE html>
 {% extends 'base.html' %}
+{% load static %}
 {% block content %}
 
-<form method="post" class="form-register">
-    {% csrf_token %}
 
-{% for f in form %}
-    <p><h3><label class="form-label" for="{{f.id_for_label}}">{{f.label}}: </label></h3>{{ f }}</p>
-    <div class="form-error">{{f.errors}}</div>
-{% endfor %}
-    <button type="submit" class="btn btn-primary">Регистрация</button>
-</form>
+
+<html>
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="css/style.css" media="screen" type="text/css" />
+	<link rel="icon" href="http://vladmaxi.net/favicon.ico" type="image/x-icon">
+	<link rel="shortcut icon" href="http://vladmaxi.net/favicon.ico" type="image/x-icon">
+	<!--[if lt IE 9]>
+		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+</head>
+<body id="login-back">
+<div id="login-form">
+    <h1>Регистрация на сайте</h1>
+
+        <fieldset>
+            <form method="post">
+                {% csrf_token %}
+                {% for f in form %}
+                <h4><p><label class="form-label">{{f.label}}: </label></p></h4>{{ f }}
+                    <div class="form-error">{{ f.errors }}</div><br>
+                {% endfor %}
+
+                <button type="submit" class="btn btn-primary">Регистрация</button>
+                <footer class="clearfix">
+                    <p><a href="/register/">Забыли пароль?</a></p>
+                </footer>
+            </form>
+        </fieldset>
+
+    </div>
+</body>
+</html>
 
 {% endblock %}

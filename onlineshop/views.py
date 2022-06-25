@@ -101,7 +101,7 @@ class ContactFormView(LoginRequiredMixin, FormView):
         return redirect('home')
 
     def get_context_data(self, **kwargs):
-        return {'title': 'Личный кабинет', 'form': self.form_class, 'cats': cats}
+        return {'title': 'Связаться с нами', 'form': self.form_class, 'cats': cats}
 
 
 class ShopCategory(ListView):

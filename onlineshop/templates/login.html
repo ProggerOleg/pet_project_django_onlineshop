@@ -22,16 +22,14 @@
         <fieldset>
             <form method="post">
                 {% csrf_token %}
-<div class="form-error">{{ form.non_field_errors }}</div>
                 {% for f in form %}
-                    <h4><label class="form-label">{{f.label}}: </label></h4>{{ f }}
-                    <ul class="errorlist"><li>Enter a valid {{f.label}}.</li></ul>
-                    <div class="form-error">{{f.errors}}</div>
+                <h4><p><label class="form-label">{{f.label}}: </label></p></h4>{{ f }}
+                    <div class="form-error">{{ f.errors }}</div><br>
                 {% endfor %}
 
                 <button type="submit" class="btn btn-primary">Войти</button>
                 <footer class="clearfix">
-                    <p><a href="/register/">Забыли пароль?</a></p>
+                        <p><a href="/register/">Забыли пароль?</a></p>
                 </footer>
             </form>
         </fieldset>
