@@ -81,7 +81,7 @@ class LoginUser(LoginView):
     template_name = 'login.html'
 
     def get_success_url(self):
-        return reverse_lazy('home')
+        return reverse_lazy('shop')
 
     def get_context_data(self, **kwargs):
         return {'title': 'Авторизация', 'form': self.form_class, 'cats': cats}
@@ -92,7 +92,7 @@ def logout_user(request):
     return redirect('login')
 
 
-class ContactFormView(LoginRequiredMixin, FormView):
+class ContactFormView(FormView):
     template_name = 'contact.html'
     success_url = reverse_lazy('home')
 

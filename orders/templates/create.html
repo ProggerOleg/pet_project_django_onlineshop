@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<html>
+<head>
+	<meta charset="UTF-8">
+	<link rel="icon" href="http://vladmaxi.net/favicon.ico" type="image/x-icon">
+	<link rel="shortcut icon" href="http://vladmaxi.net/favicon.ico" type="image/x-icon">
+	<link rel="stylesheet" href="css/style.css" media="screen" type="text/css" />
+	<script src="js/prefixfree.min.js"></script>
+</head>
+
+<body>
+
+
+  <div id="content" class="container">
+  <div class="form-wrapper">
+    <div class="linker">
+      <span class="ring"></span>
+      <span class="ring"></span>
+      <span class="ring"></span>
+      <span class="ring"></span>
+      <span class="ring"></span>
+    </div>
+
+    <div class="order-info">
+        <br>
+        <h3>Ваш заказ</h3>
+        <ul>
+            {% for item in cart %}
+                <li> {{item.product|truncatewords:5}}
+                    {{ item.quantity }} x {{ item.price }} =
+                    <span>${{ item.total_price }}</span>
+                </li>
+            {% endfor %}
+        </ul>
+        <p><h6>К оплате: ${{ cart.get_total_price }}</h6></p>
+        <form method="post">
+            {% csrf_token %}
+    <div class="row">
+    <div class="col">
+      {{form.first_name.label}}: {{form.first_name}}
+    </div>
+    <div class="col">
+      {{form.last_name.label}}: {{form.last_name}}
+    </div>
+  </div><br>
+        <div class="row">
+    <div class="col">
+      {{form.email.label}}: {{form.email}}
+    </div>
+    <div class="col">
+      {{form.address.label}}: {{form.address}}
+    </div>
+  </div><br>
+<div class="row">
+    <div class="col">
+      {{form.postal_code.label}}: {{form.postal_code}}
+    </div>
+    <div class="col">
+      {{form.city.label}}: {{form.city}}
+    </div>
+  </div>
+<button type="submit">Оформить заказ</button>
+        </form>
+    </div></div>
+</div>
+
+<img src="{% static 'images/dno_magaz.png' %}" width="100%" height="20px">
+
+{% endblock %}

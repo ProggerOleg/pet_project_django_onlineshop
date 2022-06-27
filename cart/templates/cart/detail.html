@@ -41,13 +41,13 @@
         <tr class="total" style="background-color:yellow;">
             <td><h4>Total</h4></td>
             <td colspan="4"></td>
-            <td class="num"><h4>₴{{ cart.get_total_price }}</h4></td>
+            <td class="num" style="color:red;"><h4>₴{{ cart.get_total_price }}</h4></td>
         </tr>
         </tbody>
     </table>
 <br>
     <p class="text-right">
-        <a href="/shop/"><button type="button" class="btn btn-primary">Вернуться в магазин</button></a>
-        <a href="/shop/"><button type="button" class="btn btn-danger">Очистить корзину</button></a>
+        <a href="/shop/"><button type="button" class="btn btn-danger">Вернуться в магазин</button></a>
+        <a href="{% url 'orders:order_create' %}"><button type="button" class="btn btn-success">Заказать</button></a>
     </p>
 {% endblock %}

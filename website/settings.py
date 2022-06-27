@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'onlineshop',
     'cart',
     'orders',
+    'haystack',
 ]
 
 MIDDLEWARE = [
@@ -136,5 +137,9 @@ INTERNAL_IPS = [
 ]
 CART_SESSION_ID = 'cart'
 
-SOCIAL_AUTH_GOOGLE_OAUTH2_KEY ='875651599798-46rq8obkpn8rbq5q8r1bbd3hm06hfrn3.apps.googleusercontent.com'
-SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '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'
+HAYSTACK_CONNECTIONS = {
+    'default': {
+        'ENGINE': 'haystack.backends.solr_backend.SolrEngine',
+        'URL': 'http://127.0.0.1:8983/solr/blog'
+    },
+}

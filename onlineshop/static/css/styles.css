@@ -1,3 +1,102 @@
+body {
+  background-image:url(http://www.w3cplus.com/demo/css3/loginform_rbbrt/bg.jpg);
+}
+#content {
+  width:680px;
+  margin:50px auto;
+}
+.col{
+    margin: 5px auto;
+}
+.form-wrapper button[type="submit"] {
+    margin-top:25px;
+	cursor:pointer;
+    width:215px;
+    height:44px;
+    color:#fff;
+    font-size:20px;
+    border:none;
+    border-top:1px solid rgb(190,143,48);
+    position:relative;
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgb(228,182,88)), color-stop(100%,rgb(218,149,78)));
+    background-size:213px 41px,215px 43px;
+    border-radius:5px;
+    box-shadow:inset 0 1px 0 rgb(242,220,175);
+    text-shadow:1px 1px 0 rgb(138,100,50);
+    transition:color 300ms linear;
+}
+.form-wrapper button[type="submit"]:hover {
+	opacity:0.9;
+	}
+.form-wrapper {
+  margin:32px auto;
+  min-width:264px;
+  min-height:253px;
+  position:relative;
+  border:1px solid rgb(197,200,204);
+  background-color:rgb(248,249,250);
+  text-align:center;
+  border-radius:5px;
+  box-shadow:0 1px 0 rgb(255,255,255), 0 2px 0 rgb(197,200,204), 0 3px 0 rgb(255,255,255), 0 4px 0 rgb(197,200,204);/*纸张层叠效果*/
+}
+.form-wrapper:before {
+  content:"";
+  display:block;
+  height:37px;
+  border-bottom:1px solid rgb(197,200,204);
+  border-radius:5px 5px 0 0;
+  box-shadow:inset 2px 2px 0 rgb(255,255,255);
+}
+
+.form-wrapper .linker {
+  position:absolute;
+  width:240px;
+  height:40px;
+  top:18px;
+  left:10px;
+}
+.linker .ring {
+  position:relative;
+  display:inline-block;
+  border:1px solid rgb(163,164,167);
+  background-color:rgb(220,222,225);
+  height:12px;
+  width:12px;
+  border-radius: 6px;
+  margin-right:33px;
+}
+.linker .ring:last-child {
+  margin-right:0;
+}
+.linker .ring:before {
+  content:"";
+  position:absolute;
+  bottom:-25px;
+  left:-1px;
+  border:1px solid rgb(163,164,167);
+  background-color:rgb(220,222,225);
+  height:12px;
+  width:12px;
+  border-radius: 6px;
+}
+.linker .ring:after{
+  content:"";
+  position:absolute;
+  top:2px;
+  left:2px;
+  width:6px;
+  height:30px;
+  border:1px solid rgb(202,202,202);
+  background-color:rgb(255,255,255);
+  border-radius: 3px;
+}
+.order-form{
+     float: left; /*Задаем обтекание*/
+     line-height: 30px;/*Высота строки +  верт. центрирования текста*/
+     width: 60px; /*Фиксируем ширину блока*/
+     margin-right: 10px;
+     text-align: center;}
+
 @charset "utf-8";
 /* CSS Document */
 
