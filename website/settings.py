@@ -40,7 +40,6 @@ INSTALLED_APPS = [
     'onlineshop',
     'cart',
     'orders',
-    'haystack',
 ]
 
 MIDDLEWARE = [
@@ -136,10 +135,3 @@ INTERNAL_IPS = [
     "127.0.0.1",
 ]
 CART_SESSION_ID = 'cart'
-
-HAYSTACK_CONNECTIONS = {
-    'default': {
-        'ENGINE': 'haystack.backends.solr_backend.SolrEngine',
-        'URL': 'http://127.0.0.1:8983/solr/blog'
-    },
-}

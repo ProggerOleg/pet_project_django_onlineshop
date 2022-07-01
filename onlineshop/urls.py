@@ -12,6 +12,7 @@ urlpatterns = [
     path('logout/', logout_user, name='logout'),
     path('user_room/', cart_detail, name='user_cart'),
     path('feedback/', ContactFormView.as_view(), name='contact_us'),
+    path('search/', SearchProduct.as_view(), name='search_results'),
     path('shop/<slug:cat_slug>/', ShopCategory.as_view(), name='category'),
     path('category/<slug:post_slug>/', ShowPost.as_view(), name='post'),
 ]

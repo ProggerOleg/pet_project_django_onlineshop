@@ -40,26 +40,26 @@
             {% csrf_token %}
     <div class="row">
     <div class="col">
-      {{form.first_name.label}}: {{form.first_name}}
+      {{form.first_name.label}}: <br>{{form.first_name}}
     </div>
     <div class="col">
-      {{form.last_name.label}}: {{form.last_name}}
+      {{form.last_name.label}}: <br>{{form.last_name}}
     </div>
   </div><br>
         <div class="row">
     <div class="col">
-      {{form.email.label}}: {{form.email}}
+      {{form.email.label}}: <br>{{form.email}}
     </div>
     <div class="col">
-      {{form.address.label}}: {{form.address}}
+      {{form.address.label}}: <br>{{form.address}}
     </div>
   </div><br>
 <div class="row">
     <div class="col">
-      {{form.postal_code.label}}: {{form.postal_code}}
+      {{form.postal_code.label}}: <br>{{form.postal_code}}
     </div>
     <div class="col">
-      {{form.city.label}}: {{form.city}}
+      {{form.city.label}}: <br>{{form.city}}
     </div>
   </div>
 <button type="submit">Оформить заказ</button>

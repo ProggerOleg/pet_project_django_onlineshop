@@ -8,6 +8,8 @@ from django.views.generic import ListView, CreateView, FormView, DetailView
 from .forms import *
 from .models import *
 from cart.forms import CartAddProductForm
+from django.db.models import Q
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 # Create your views here.
 
 cats = Category.objects.all()
@@ -25,13 +27,14 @@ class ShopHome(ListView):
     model = ShopList
     template_name = 'shopping.html'
     context_object_name = 'posts'
+    posts = ShopList.objects.all()
+    paginate_by = 2
 
     def get_context_data(self, *, object_list=None, **kwargs):
-        posts = ShopList.objects.all()
-        return {'cats': cats, 'title': 'Магазин', 'posts': posts}
+        return {'cats': cats, 'title': 'Магазин', 'posts': self.posts}
 
     def get_queryset(self):
-        return ShopList.objects.all()
+        return self.posts
 
 
 class ShowPost(DetailView):
@@ -117,3 +120,17 @@ class ShopCategory(ListView):
     def get_context_data(self, *, object_list=None, **kwargs):
         posts = ShopList.objects.filter(cat__slug=self.kwargs['cat_slug'], available=True).select_related('cat')
         return {'title': 'Категория - ' + str(posts[0].cat), 'posts': posts, 'cats': cats, 'cat': posts[0].cat}
+
+
+class SearchProduct(ListView):
+    model = ShopList
+    template_name = 'search_results.html'
+
+    def get_queryset(self):  # новый
+        query = self.request.GET.get('q')
+        object_list = ShopList.objects.filter(
+            Q(title__icontains=query) | Q(content__icontains=query) | Q(title__icontains=query.capitalize()))
+        return object_list
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        return {'title': 'Результаты поиска: '+str(), 'posts': self.object_list, 'cats': cats}
