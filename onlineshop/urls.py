@@ -5,7 +5,7 @@ from cart.views import cart_detail
 urlpatterns = [
     path('', index, name='home'),
     path('about/', about_us, name='about'),
-    path('shop/', ShopHome.as_view(), name='shop'),
+    path('shop/', shop_page, name='shop'),
     path('addpage/', AddProduct.as_view(), name='addpage'),
     path('login/', LoginUser.as_view(), name='login'),
     path('register/', RegisterUser.as_view(), name='register'),

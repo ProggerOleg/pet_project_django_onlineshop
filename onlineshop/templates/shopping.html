@@ -8,7 +8,6 @@
             <div class="item">
                 <div class="article-panel">
 	                <p class="first">Категория: {{product.cat}}<br> Дата: {{product.time_update|date:"d-m-Y H:i:s"}}</p>
-
 			</div>
                 <a href="{{ product.get_absolute_url }}" style="color:black;">
                     <img src="{% if product.photo %}{{ product.photo.url }}{% else %}{% static 'images/no_image.png' %}{% endif %}" width="240" height="300" id="img-prod">
@@ -23,22 +22,26 @@
 <img src="{% static 'images/dno_magaz.png' %}" width="100%" height="20px">
 
 
-<div class="pagination">
-    <span class="step-links">
-        {% if page_obj.has_previous %}
-            <a href="?page=1">&laquo; first</a>
-            <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+<nav aria-label="Page navigation example">
+  <ul class="pagination justify-content-center">
+      {% if page_obj.has_previous %}
+    <li class="page-item">
+      <a class="page-link" href="?page={{ page_obj.previous_page_number }}" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+      </a>
         {% endif %}
+    </li>
+      {% for p in page_obj.paginator.page_range %}
+    <li class="page-item"><a class="page-link" href="?page={{ p }}">{{p}}</a></li>
+      {% endfor %}
 
-        <span class="current">
-            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
-        </span>
-
-        {% if page_obj.has_next %}
-            <a href="?page={{ page_obj.next_page_number }}">next</a>
-            <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
-        {% endif %}
-    </span>
-</div>
-<div class="container ending"><h5>К сожалению, это все товары что мы можем вам предложить на данный момент...</h5></div>
+      {% if page_obj.has_next %}
+      <li class="page-item">
+      <a class="page-link" href="?page={{ page_obj.next_page_number }}" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+    </li>
+      {% endif %}
+  </ul>
+</nav>
 {% endblock %}

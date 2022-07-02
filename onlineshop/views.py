@@ -24,11 +24,10 @@ def about_us(request):
 
 
 class ShopHome(ListView):
+    paginate_by = 4
     model = ShopList
     template_name = 'shopping.html'
-    context_object_name = 'posts'
-    posts = ShopList.objects.all()
-    paginate_by = 2
+    posts = ShopList.objects.filter()
 
     def get_context_data(self, *, object_list=None, **kwargs):
         return {'cats': cats, 'title': 'Магазин', 'posts': self.posts}
@@ -36,6 +35,25 @@ class ShopHome(ListView):
     def get_queryset(self):
         return self.posts
 
+def shop_page(request):
+    # 'Новости'
+    posts = ShopList.objects.all().order_by('-time_create')
+    paginator = Paginator(posts, 8)
+    page = request.GET.get('page')
+    try:
+        page_obj = paginator.page(page)
+    except PageNotAnInteger:
+        # Если страница не является целым числом,возвращаем первую страницу.
+        page_obj = paginator.page(1)
+    except EmptyPage:
+        # Если номер страницы больше, чем общее количество страниц,
+        # возвращаем последнюю.
+        page_obj = paginator.page(paginator.num_pages)
+    return render(request, 'shopping.html',
+                  {'page': page,
+                   'cats': cats,
+                   'title': 'Магазин',
+                   'posts': page_obj, 'page_obj': page_obj})
 
 class ShowPost(DetailView):
     model = ShopList
